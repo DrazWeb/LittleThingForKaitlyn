@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just to Make Your Day</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #fceabb, #f8b500);
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        color: #fff;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.2em;
+        margin-bottom: 40px;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    button {
+        background-color: #ff4d6d;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.1em;
+        cursor: pointer;
+        border-radius: 50px;
+        color: #fff;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Confettis simples */
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #fff;
+        opacity: 0.7;
+        top: 0;
+        animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(0) rotate(0deg); }
+        100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    /* Popup effet surprise */
+    #popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        color: #333;
+        padding: 30px 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 1000;
+        text-align: center;
+    }
+
+    #popup a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #ff4d6d;
+        color: #fff;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    #popup a:hover {
+        background-color: #ff1a4d;
+    }
+
+    #popup button {
+        margin-top: 15px;
+        padding: 8px 15px;
+        border: none;
+        background: #ccc;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+<body>
+
+<h1>Just to make your day a little better 😊</h1>
+<button id="surpriseBtn">Little surprise if you click here</button>
+
+<div id="popup">
+    <h2>Surprise! 🎉</h2>
+    <p>Click below to download the game I made today!</p>
+    <a href="TON_LIEN_DRIVE_ICI" target="_blank">Download Now</a>
+    <br>
+    <button id="closePopup">Close</button>
+</div>
+
+<script>
+    const button = document.getElementById('surpriseBtn');
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('closePopup');
+
+    // Génération de confettis aléatoires
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+        confetti.style.width = confetti.style.height = Math.random()*8 + 5 + 'px';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+    }
+
+    button.addEventListener('click', () => {
+        popup.style.display = 'block';
+        for(let i=0; i<50; i++) {
+            setTimeout(createConfetti, i*50);
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
